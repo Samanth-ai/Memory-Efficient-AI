@@ -328,8 +328,8 @@ def init_loggers(log_path: str, show_debug=False, disable_color=False):
 def run():
     import argparse
 
-    parser = argparse.ArgumentParser("Grade your assignment")
-    parser.add_argument("assignment", default="homework")
+    parser = argparse.ArgumentParser("Grade your project")
+    parser.add_argument("module_path", default="src", help="Path to the python module to grade (e.g., 'src')")
     parser.add_argument("-v", "--verbose", action="store_true")
     parser.add_argument("-vv", "--very_verbose", action="store_true")
     parser.add_argument("--log_path", default=None)
@@ -339,12 +339,12 @@ def run():
 
     logger = init_loggers(args.log_path, show_debug=args.very_verbose, disable_color=args.disable_color)
 
-    print("Loading assignment")
-    assignment = load_assignment(logger, args.assignment)
+    print("Loading project module...")
+    assignment = load_assignment(logger, args.module_path)
     if assignment is None:
         return 0
 
-    print("Loading grader")
+    print("Loading grader...")
     total_score = grade_all(assignment, logger, args.verbose or args.very_verbose)
 
     return total_score
