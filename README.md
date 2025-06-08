@@ -68,6 +68,7 @@ Run the `stats.py` script to compare model memory and parameters:
 
 ```bash
 python3 -m src.stats bignet half_precision low_precision lora qlora
+```
 
 **Example Output:**
 
@@ -79,11 +80,14 @@ python3 -m src.stats bignet half_precision low_precision lora qlora
 | lora           | 2.00 M           | 18.90 M               | 20.90 M       | 36.08 MB            | 36.08 MB       | 0.04 MB        | 8.86 MB         |
 | qlora          | 1.48 M           | 10.65 M               | 12.13 M       | 12.60 MB            | 12.60 MB       | 0.04 MB        | 11.13 MB        |
 
-2. Compare Model Outputs
+### 2. Compare Model Outputs
 Ensure the optimized models are numerically close to the baseline bignet:
 
+```bash
 python3 -m src.compare bignet half_precision lora qlora
-Example Output:
+```
+
+**Example Output:**
 
 Comparing bignet and half_precision
  - Max difference: 0.0015
@@ -92,25 +96,37 @@ Comparing bignet and half_precision
 Comparing bignet and lora
  - Max difference: 0.0015
  - Mean difference: 0.0001
-3. Fine-Tuning Test
-Run a small training loop on a dummy classification task:
 
+   
+### 3. Fine-Tuning Test
+Run a small training loop on a dummy classification task:
+```bash
 python3 -m src.fit lora
 # or
 python3 -m src.fit qlora
-⚙️ Installation & Setup
+```
+
+
+## ⚙️ Installation & Setup
 
 We recommend using Miniconda for environment management.
 
 Create Environment
+```bash
 conda create --name model_optimization python=3.12 -y
 conda activate model_optimization
+```
+
 Install PyTorch
 Follow the official installation guide for your system:
 🔗 https://pytorch.org/get-started/locally/
+
 Install Dependencies
+```bash
 pip install -r requirements.txt
-📦 Bundling the Project
+```
+
+## 📦 Bundling the Project
 
 Package everything into a ZIP file for distribution:
 
